@@ -115,7 +115,7 @@ public class CalendarVerticalItemAdapter extends RecyclerView.Adapter<RecyclerVi
             if (adapter.startDate != null && adapter.startDate == datePosition) {
                 myViewHolder.iv_bg.setVisibility(View.VISIBLE);
                 myViewHolder.iv_bg.setBackgroundResource(R.drawable.selected_bg_start);
-                myViewHolder.tv_small.setVisibility(View.VISIBLE);
+                myViewHolder.tv_small.setVisibility(View.GONE);
                 myViewHolder.tv_small.setText("开始");
                 myViewHolder.tvDay.setTextColor(mnCalendarVerticalConfig.getMnCalendar_colorRangeText());
                 myViewHolder.tv_small.setTextColor(mnCalendarVerticalConfig.getMnCalendar_colorRangeText());
@@ -126,7 +126,7 @@ public class CalendarVerticalItemAdapter extends RecyclerView.Adapter<RecyclerVi
             if (adapter.endDate != null && adapter.endDate == datePosition) {
                 myViewHolder.iv_bg.setVisibility(View.VISIBLE);
                 myViewHolder.iv_bg.setBackgroundResource(R.drawable.selected_bg_end);
-                myViewHolder.tv_small.setVisibility(View.VISIBLE);
+                myViewHolder.tv_small.setVisibility(View.GONE);
                 myViewHolder.tv_small.setText("结束");
                 myViewHolder.tvDay.setTextColor(mnCalendarVerticalConfig.getMnCalendar_colorRangeText());
                 myViewHolder.tv_small.setTextColor(mnCalendarVerticalConfig.getMnCalendar_colorRangeText());

@@ -1,12 +1,12 @@
 package com.bojun.calendar_master;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.demons.calendar.CalendarVertical;
 import com.demons.calendar.listeners.OnCalendarRangeChooseListener;
@@ -33,7 +33,19 @@ public class MainActivity extends AppCompatActivity {
         context = this;
 
         mnCalendarVertical = (CalendarVertical) findViewById(R.id.mnCalendarVertical);
-
+        /**
+         *  自定义设置相关
+         */
+        CalendarVerticalConfig mnCalendarVerticalConfig = new CalendarVerticalConfig.Builder()
+                .setMnCalendar_showWeek(false)                   //是否显示星期栏
+                .setMnCalendar_showLunar(false)                  //是否显示阴历
+                .setMnCalendar_colorBeforeToday("#EFEFEF")      //今天之前的日期的颜色
+                .setMnCalendar_colorRangeBg("#DEF5E2")        //区间中间的背景颜色
+                .setMnCalendar_colorRangeText("#FFFFFF")        //区间文字的颜色
+                .setMnCalendar_colorStartAndEndBg("#DEF5E2")    //开始结束的背景颜色
+                .setMnCalendar_countMonth(12)                    //显示多少月(默认6个月)
+                .build();
+        mnCalendarVertical.setConfig(mnCalendarVerticalConfig);
         /**
          * 区间选取完成监听
          */
@@ -64,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
                  *  自定义设置相关
                  */
                 CalendarVerticalConfig mnCalendarVerticalConfig = new CalendarVerticalConfig.Builder()
-                        .setMnCalendar_showWeek(true)                   //是否显示星期栏
-                        .setMnCalendar_showLunar(true)                  //是否显示阴历
+                        .setMnCalendar_showWeek(false)                   //是否显示星期栏
+                        .setMnCalendar_showLunar(false)                  //是否显示阴历
                         .setMnCalendar_colorWeek("#B07219")             //星期栏的颜色
                         .setMnCalendar_titleFormat("yyyy-MM")           //每个月的标题样式
                         .setMnCalendar_colorTitle("#FF0000")            //每个月标题的颜色

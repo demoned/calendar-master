@@ -3,13 +3,13 @@
     <!--星期的颜色值-->
     <color name="calendar_color_text_week">#5E5E5E</color>
     <!--日历Item的阳历的颜色值-->
-    <color name="calendar_color_text_solar">#282828</color>
+    <color name="calendar_color_text_solar">#3E3E3E</color>
     <!--日历Item的阴历的颜色值-->
     <color name="calendar_color_text_lunar">#979797</color>
     <!--日历今天圆形背景-->
     <color name="calendar_color_today_bg">#282828</color>
     <!--线-->
-    <color name="calendar_color_line">#CCCCCC</color>
+    <color name="calendar_color_line">#F7FBFC</color>
     <!--白色-->
     <color name="calendar_color_white">#FFFFFF</color>
     <!--不是当前月份的阳历的颜色-->
