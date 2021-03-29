@@ -2,6 +2,8 @@ package com.demons.calendar.model;
 
 import android.graphics.Color;
 
+import java.util.Calendar;
+
 /**
  * 垂直方向的配置信息
  *
@@ -33,8 +35,8 @@ public class CalendarVerticalConfig {
     private int mnCalendar_colorRangeBg = Color.parseColor("#d0353535");
     //区间文字的颜色
     private int mnCalendar_colorRangeText = Color.parseColor("#FFFFFF");
-    //显示多少月(默认6个月)
-    private int mnCalendar_countMonth = 6;
+
+    private int mnCalendar_year = Calendar.getInstance().get(Calendar.YEAR);
 
     private CalendarVerticalConfig() {
     }
@@ -127,14 +129,6 @@ public class CalendarVerticalConfig {
         this.mnCalendar_colorTitle = mnCalendar_colorTitle;
     }
 
-    public int getMnCalendar_countMonth() {
-        return mnCalendar_countMonth;
-    }
-
-    private void setMnCalendar_countMonth(int mnCalendar_countMonth) {
-        this.mnCalendar_countMonth = mnCalendar_countMonth;
-    }
-
     public boolean isMnCalendar_single_choose() {
         return mnCalendar_single_choose;
     }
@@ -143,11 +137,20 @@ public class CalendarVerticalConfig {
         this.mnCalendar_single_choose = mnCalendar_single_choose;
     }
 
+    public int getMnCalendar_year() {
+        return mnCalendar_year;
+    }
+
+    public void setMnCalendar_year(int mnCalendar_year) {
+        this.mnCalendar_year = mnCalendar_year;
+    }
+
     @Override
     public String toString() {
-        return "MNCalendarVerticalConfig{" +
+        return "CalendarVerticalConfig{" +
                 "mnCalendar_showLunar=" + mnCalendar_showLunar +
                 ", mnCalendar_showWeek=" + mnCalendar_showWeek +
+                ", mnCalendar_single_choose=" + mnCalendar_single_choose +
                 ", mnCalendar_titleFormat='" + mnCalendar_titleFormat + '\'' +
                 ", mnCalendar_colorTitle=" + mnCalendar_colorTitle +
                 ", mnCalendar_colorWeek=" + mnCalendar_colorWeek +
@@ -157,7 +160,7 @@ public class CalendarVerticalConfig {
                 ", mnCalendar_colorStartAndEndBg=" + mnCalendar_colorStartAndEndBg +
                 ", mnCalendar_colorRangeBg=" + mnCalendar_colorRangeBg +
                 ", mnCalendar_colorRangeText=" + mnCalendar_colorRangeText +
-                ", mnCalendar_countMonth=" + mnCalendar_countMonth +
+                ", mnCalendar_year=" + mnCalendar_year +
                 '}';
     }
 
@@ -233,8 +236,8 @@ public class CalendarVerticalConfig {
             return this;
         }
 
-        public Builder setMnCalendar_countMonth(int mnCalendar_countMonth) {
-            mnCalendarConfig.setMnCalendar_countMonth(mnCalendar_countMonth);
+        public Builder setMnCalendar_year(int mnCalendar_year) {
+            mnCalendarConfig.setMnCalendar_year(mnCalendar_year);
             return this;
         }
 
@@ -246,8 +249,5 @@ public class CalendarVerticalConfig {
         public CalendarVerticalConfig build() {
             return mnCalendarConfig;
         }
-
     }
-
-
 }

@@ -107,8 +107,12 @@ public class CalendarVertical extends LinearLayout {
         //日期集合
         dataMap = new HashMap<>();
         //计算日期
-        int mnCalendar_countMonth = mnCalendarVerticalConfig.getMnCalendar_countMonth();
-        for (int i = 0; i < mnCalendar_countMonth; i++) {
+        int calendar_year = mnCalendarVerticalConfig.getMnCalendar_year();
+        //将Calendar对象设置为输入年份的1月1日
+        currentCalendar.set(calendar_year, 0, 1);
+        //获取年份
+        int year = currentCalendar.get(Calendar.YEAR);
+        for (int i = 0; i < 12; i++) {
             int count7 = 0;
             ArrayList<CalendarItemModel> mDatas = new ArrayList<>();
             Calendar calendar = (Calendar) currentCalendar.clone();
@@ -143,10 +147,8 @@ public class CalendarVertical extends LinearLayout {
 
             dataMap.put(String.valueOf(i), mDatas);
         }
-
         //设置Adapter
         initAdapter();
-
     }
 
     private void initAdapter() {

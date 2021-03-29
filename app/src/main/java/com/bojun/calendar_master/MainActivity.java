@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 .setMnCalendar_showLunar(false)                  //是否显示阴历
                 .setMnCalendar_colorRangeBg("#DEF5E2")        //区间中间的背景颜色
                 .setMnCalendar_colorStartAndEndBg("#DEF5E2")    //开始结束的背景颜色
-                .setMnCalendar_countMonth(12)                    //显示多少月(默认6个月)
+                .setMnCalendar_year(2021)
                 .build();
         mnCalendarVertical.setConfig(mnCalendarVerticalConfig);
         /**
@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
                         .setMnCalendar_colorRangeBg("#9930C553")        //区间中间的背景颜色
                         .setMnCalendar_colorRangeText("#000000")        //区间文字的颜色
                         .setMnCalendar_colorStartAndEndBg("#258C3E")    //开始结束的背景颜色
-                        .setMnCalendar_countMonth(12)                    //显示多少月(默认6个月)
                         .build();
                 mnCalendarVertical.setConfig(mnCalendarVerticalConfig);
                 break;
