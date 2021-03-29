@@ -34,6 +34,7 @@ public class CalendarVerticalAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     public Date startDate = null;
     public Date endDate = null;
+    public Integer weekNumber;
 
     public CalendarVerticalAdapter(Context context, HashMap<String, ArrayList<CalendarItemModel>> mDatas, Calendar currentCalendar, CalendarVerticalConfig mnCalendarVerticalConfig) {
         this.context = context;
@@ -111,7 +112,7 @@ public class CalendarVerticalAdapter extends RecyclerView.Adapter<RecyclerView.V
     public void notifyChoose() {
         if (this.onCalendarRangeChooseListener != null) {
             if (startDate != null && endDate != null) {
-                onCalendarRangeChooseListener.onRangeDate(startDate, endDate);
+                onCalendarRangeChooseListener.onRangeDate(startDate, endDate,weekNumber);
             }
         }
     }
@@ -122,6 +123,7 @@ public class CalendarVerticalAdapter extends RecyclerView.Adapter<RecyclerView.V
         this.mnCalendarVerticalConfig = mnCalendarVerticalConfig;
         this.startDate = null;
         this.endDate = null;
+        this.weekNumber = null;
         notifyDataSetChanged();
     }
 

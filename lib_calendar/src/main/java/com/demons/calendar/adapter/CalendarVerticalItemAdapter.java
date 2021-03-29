@@ -171,6 +171,7 @@ public class CalendarVerticalItemAdapter extends RecyclerView.Adapter<RecyclerVi
                         WeekInfoData weekInfo = getWeekInfo(dateClick.getTime());
                         adapter.startDate = weekInfo.getWeekStart();
                         adapter.endDate = weekInfo.getWeekEnd();
+                        adapter.weekNumber = weekInfo.getWeekNumber();
                     }
                     adapter.notifyChoose();
                     //刷新
@@ -246,7 +247,7 @@ public class CalendarVerticalItemAdapter extends RecyclerView.Adapter<RecyclerVi
             calendar.setTime(time2);
             int week2 = calendar.get(Calendar.WEEK_OF_YEAR);
             week = (week1 >= week2 ? week2 : week1);
-            dateData.setWeek(week);
+            dateData.setWeekNumber(week);
             dateData.setWeekEnd(cal.getTime());
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
          */
         mnCalendarVertical.setOnCalendarRangeChooseListener(new OnCalendarRangeChooseListener() {
             @Override
-            public void onRangeDate(Date startDate, Date endDate) {
+            public void onRangeDate(Date startDate, Date endDate, Integer weekNumber) {
                 String startTime = sdf.format(startDate);
                 String endTime = sdf.format(endDate);
-                Toast.makeText(context, "开始日期:" + startTime + ",结束日期:" + endTime, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "开始日期:" + startTime + ",结束日期:" + endTime + "、第" + weekNumber + "周", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -8,5 +8,5 @@ import java.util.Date;
  * @author demons
  */
 public interface OnCalendarRangeChooseListener {
-    void onRangeDate(Date startDate, Date endDate);
+    void onRangeDate(Date startDate, Date endDate, Integer weekNumber);
 }
