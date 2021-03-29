@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.demons.calendar.adapter.CalendarVerticalAdapter;
 import com.demons.calendar.listeners.OnCalendarRangeChooseListener;
-import com.demons.calendar.model.Lunar;
 import com.demons.calendar.model.CalendarItemModel;
 import com.demons.calendar.model.CalendarVerticalConfig;
+import com.demons.calendar.model.Lunar;
 import com.demons.calendar.utils.LunarCalendarUtils;
 
 import java.util.ArrayList;
@@ -178,5 +178,4 @@ public class CalendarVertical extends LinearLayout {
             mnCalendarVerticalAdapter.setOnCalendarRangeChooseListener(onCalendarRangeChooseListener);
         }
     }
-
 }

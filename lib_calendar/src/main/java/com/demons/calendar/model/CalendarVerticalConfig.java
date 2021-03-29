@@ -13,6 +13,8 @@ public class CalendarVerticalConfig {
     private boolean mnCalendar_showLunar = true;
     //是否显示星期栏
     private boolean mnCalendar_showWeek = true;
+    //是否区域选择还是单项选择
+    private boolean mnCalendar_single_choose = true;
     //每个月标题的样式
     private String mnCalendar_titleFormat = "yyyy年MM月";
     //每个月标题的颜色
@@ -133,6 +135,14 @@ public class CalendarVerticalConfig {
         this.mnCalendar_countMonth = mnCalendar_countMonth;
     }
 
+    public boolean isMnCalendar_single_choose() {
+        return mnCalendar_single_choose;
+    }
+
+    public void setMnCalendar_single_choose(boolean mnCalendar_single_choose) {
+        this.mnCalendar_single_choose = mnCalendar_single_choose;
+    }
+
     @Override
     public String toString() {
         return "MNCalendarVerticalConfig{" +
@@ -225,6 +235,11 @@ public class CalendarVerticalConfig {
 
         public Builder setMnCalendar_countMonth(int mnCalendar_countMonth) {
             mnCalendarConfig.setMnCalendar_countMonth(mnCalendar_countMonth);
+            return this;
+        }
+
+        public Builder setMnCalendar_single_choose(boolean single_choose) {
+            this.mnCalendarConfig.setMnCalendar_single_choose(single_choose);
             return this;
         }
 

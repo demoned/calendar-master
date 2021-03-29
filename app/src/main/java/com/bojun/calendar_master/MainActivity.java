@@ -38,10 +38,9 @@ public class MainActivity extends AppCompatActivity {
          */
         CalendarVerticalConfig mnCalendarVerticalConfig = new CalendarVerticalConfig.Builder()
                 .setMnCalendar_showWeek(false)                   //是否显示星期栏
+                .setMnCalendar_single_choose(true)
                 .setMnCalendar_showLunar(false)                  //是否显示阴历
-                .setMnCalendar_colorBeforeToday("#EFEFEF")      //今天之前的日期的颜色
                 .setMnCalendar_colorRangeBg("#DEF5E2")        //区间中间的背景颜色
-                .setMnCalendar_colorRangeText("#FFFFFF")        //区间文字的颜色
                 .setMnCalendar_colorStartAndEndBg("#DEF5E2")    //开始结束的背景颜色
                 .setMnCalendar_countMonth(12)                    //显示多少月(默认6个月)
                 .build();
@@ -57,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(context, "开始日期:" + startTime + ",结束日期:" + endTime, Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override

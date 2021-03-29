@@ -7,27 +7,6 @@ import android.graphics.Color;
  * @author demons
  */
 public class CalendarConfig {
-    /*
-    <!--日历是否显示阴历 : true-显示,false-不显示 (默认显示)-->
-    <attr name="mnCalendar_showLunar" format="boolean" />
-    <!--日历是否显示星期一栏 : true-显示,false-不显示 (默认显示) -->
-    <attr name="mnCalendar_showWeek" format="boolean" />
-    <!--日历星期的颜色值-->
-    <attr name="mnCalendar_colorWeek" format="color" />
-    <!--日历Item的阳历的颜色值-->
-    <attr name="mnCalendar_colorSolar" format="color" />
-    <!--日历Item的阴历的颜色值-->
-    <attr name="mnCalendar_colorLunar" format="color" />
-    <!--日历今天圆形背景-->
-    <attr name="mnCalendar_colorTodayBg" format="color" />
-    <!--日历不是当前月份的阳历的颜色-->
-    <attr name="mnCalendar_colorOtherMonth" format="color" />
-    <!--日历今天圆形背景上的文字的颜色-->
-    <attr name="mnCalendar_colorTodayText" format="color" />
-    <!--日历标题显示的样式-->
-    <attr name="mnCalendar_titleDateFormat" format="String" />
-    */
-
     private boolean mnCalendar_showLunar = true;
     private boolean mnCalendar_showWeek = true;
     private boolean mnCalendar_showTitle = true;
@@ -142,7 +121,7 @@ public class CalendarConfig {
 
     @Override
     public String toString() {
-        return "MNCalendarConfig{" +
+        return "CalendarConfig{" +
                 "mnCalendar_showLunar=" + mnCalendar_showLunar +
                 ", mnCalendar_showWeek=" + mnCalendar_showWeek +
                 ", mnCalendar_showTitle=" + mnCalendar_showTitle +
@@ -153,8 +132,8 @@ public class CalendarConfig {
                 ", mnCalendar_colorOtherMonth=" + mnCalendar_colorOtherMonth +
                 ", mnCalendar_colorTodayText=" + mnCalendar_colorTodayText +
                 ", mnCalendar_colorTitle=" + mnCalendar_colorTitle +
-                ", mnCalendar_titleDateFormat=" + mnCalendar_titleDateFormat +
                 ", mnCalendar_colorSelected=" + mnCalendar_colorSelected +
+                ", mnCalendar_titleDateFormat='" + mnCalendar_titleDateFormat + '\'' +
                 '}';
     }
 
@@ -234,8 +213,5 @@ public class CalendarConfig {
         public CalendarConfig build() {
             return mnCalendarConfig;
         }
-
     }
-
-
 }

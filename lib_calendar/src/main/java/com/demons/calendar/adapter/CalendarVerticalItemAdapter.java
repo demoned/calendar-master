@@ -16,9 +16,11 @@ import com.demons.calendar.constant.Constants;
 import com.demons.calendar.model.CalendarItemModel;
 import com.demons.calendar.model.CalendarVerticalConfig;
 import com.demons.calendar.model.Lunar;
+import com.demons.calendar.model.WeekInfoData;
 import com.demons.calendar.utils.LunarCalendarUtils;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -134,58 +136,46 @@ public class CalendarVerticalItemAdapter extends RecyclerView.Adapter<RecyclerVi
                 GradientDrawable myGrad = (GradientDrawable) myViewHolder.iv_bg.getBackground();
                 myGrad.setColor(mnCalendarVerticalConfig.getMnCalendar_colorStartAndEndBg());
             }
-
-            //判断是不是大于起始日期
             if (adapter.startDate != null && adapter.endDate != null) {
-                if (datePosition.getTime() > adapter.startDate.getTime() && datePosition.getTime() < adapter.endDate.getTime()) {
-                    myViewHolder.iv_bg.setVisibility(View.VISIBLE);
-                    myViewHolder.iv_bg.setBackgroundResource(R.drawable.selected_bg_centre);
-                    myViewHolder.tvDay.setTextColor(mnCalendarVerticalConfig.getMnCalendar_colorRangeText());
-                    myViewHolder.tv_small.setTextColor(mnCalendarVerticalConfig.getMnCalendar_colorRangeText());
-                    //动态修改颜色
-                    GradientDrawable myGrad = (GradientDrawable) myViewHolder.iv_bg.getBackground();
-                    myGrad.setColor(mnCalendarVerticalConfig.getMnCalendar_colorRangeBg());
-                }
+                refreshDate(myViewHolder, adapter.startDate, adapter.endDate, datePosition);
             }
-
             myViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     CalendarItemModel mnCalendarItemModel = mDatas.get(position);
-
                     Date dateClick = mnCalendarItemModel.getDate();
-
-                    //必须大于今天
-                    if (dateClick.getTime() < nowDate.getTime()) {
-                        Toast.makeText(context, "选择的日期必须大于今天", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (adapter.startDate != null && adapter.endDate != null) {
-                        adapter.startDate = null;
-                        adapter.endDate = null;
-                    }
-                    if (adapter.startDate == null) {
-                        adapter.startDate = dateClick;
-                    } else {
-                        //判断结束位置是不是大于开始位置
-                        long deteClickTime = dateClick.getTime();
-                        long deteStartTime = adapter.startDate.getTime();
-                        if (deteClickTime <= deteStartTime) {
+                    if (!mnCalendarVerticalConfig.isMnCalendar_single_choose()) {
+                        //必须大于今天
+                        if (dateClick.getTime() < nowDate.getTime()) {
+                            Toast.makeText(context, "选择的日期必须大于今天", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (adapter.startDate != null && adapter.endDate != null) {
+                            adapter.startDate = null;
+                            adapter.endDate = null;
+                        }
+                        if (adapter.startDate == null) {
                             adapter.startDate = dateClick;
                         } else {
-                            adapter.endDate = dateClick;
+                            //判断结束位置是不是大于开始位置
+                            long deteClickTime = dateClick.getTime();
+                            long deteStartTime = adapter.startDate.getTime();
+                            if (deteClickTime <= deteStartTime) {
+                                adapter.startDate = dateClick;
+                            } else {
+                                adapter.endDate = dateClick;
+                            }
                         }
                     }
-
-                    //选取通知
+                    if (mnCalendarVerticalConfig.isMnCalendar_single_choose()) {
+                        WeekInfoData weekInfo = getWeekInfo(dateClick.getTime());
+                        adapter.startDate = weekInfo.getWeekStart();
+                        adapter.endDate = weekInfo.getWeekEnd();
+                    }
                     adapter.notifyChoose();
-
                     //刷新
                     notifyDataSetChanged();
                     adapter.notifyDataSetChanged();
-
-
                 }
             });
 
@@ -210,7 +200,57 @@ public class CalendarVerticalItemAdapter extends RecyclerView.Adapter<RecyclerVi
             tv_small = (TextView) itemView.findViewById(R.id.tv_small);
             iv_bg = (ImageView) itemView.findViewById(R.id.iv_bg);
         }
-
     }
 
+    private void refreshDate(MyViewHolder myViewHolder, Date startDate, Date endDate, Date datePosition) {
+        if (datePosition.getTime() >= startDate.getTime() && datePosition.getTime() <= endDate.getTime()) {
+            myViewHolder.iv_bg.setVisibility(View.VISIBLE);
+            myViewHolder.iv_bg.setBackgroundResource(R.drawable.selected_bg_centre);
+            myViewHolder.tvDay.setTextColor(mnCalendarVerticalConfig.getMnCalendar_colorRangeText());
+            myViewHolder.tv_small.setTextColor(mnCalendarVerticalConfig.getMnCalendar_colorRangeText());
+            //动态修改颜色
+            GradientDrawable myGrad = (GradientDrawable) myViewHolder.iv_bg.getBackground();
+            myGrad.setColor(mnCalendarVerticalConfig.getMnCalendar_colorRangeBg());
+        }
+    }
+
+    public WeekInfoData getWeekInfo(long date) {
+        int week;
+        WeekInfoData dateData = new WeekInfoData();
+        try {
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setFirstDayOfWeek(Calendar.MONDAY);
+            cal.setTimeInMillis(date);
+            // 判断要计算的日期是否是周日，如果是则减一天计算周六的，否则会出问题，计算到下一周去了
+            // 获得当前日期是一个星期的第几天
+            int dayWeek = cal.get(Calendar.DAY_OF_WEEK);
+            if (1 == dayWeek) {
+                cal.add(Calendar.DAY_OF_MONTH, -1);
+            }
+            // 设置一个星期的第一天
+            cal.setFirstDayOfWeek(Calendar.MONDAY);
+            // 获得当前日期是一个星期的第几天
+            int day = cal.get(Calendar.DAY_OF_WEEK);
+            // 根据日历的规则，给当前日期减去星期几与一个星期第一天的差值
+            cal.add(Calendar.DATE, cal.getFirstDayOfWeek() - day);
+            dateData.setWeekStart(cal.getTime());
+            String date1 = sdf.format(cal.getTime());
+            Date time1 = sdf.parse(date1);
+            calendar.setTime(time1);
+            int week1 = calendar.get(Calendar.WEEK_OF_YEAR);
+            cal.add(Calendar.DATE, 6);
+            String date2 = sdf.format(cal.getTime());
+            Date time2 = sdf.parse(date2);
+            calendar.setTime(time2);
+            int week2 = calendar.get(Calendar.WEEK_OF_YEAR);
+            week = (week1 >= week2 ? week2 : week1);
+            dateData.setWeek(week);
+            dateData.setWeekEnd(cal.getTime());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return dateData;
+    }
 }

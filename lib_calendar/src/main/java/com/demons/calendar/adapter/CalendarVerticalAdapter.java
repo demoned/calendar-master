@@ -102,6 +102,7 @@ public class CalendarVerticalAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     public OnCalendarRangeChooseListener onCalendarRangeChooseListener;
 
+
     public void setOnCalendarRangeChooseListener(OnCalendarRangeChooseListener onCalendarRangeChooseListener) {
         this.onCalendarRangeChooseListener = onCalendarRangeChooseListener;
         notifyDataSetChanged();
