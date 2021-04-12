@@ -13,6 +13,7 @@ import com.demons.calendar.listeners.OnCalendarRangeChooseListener;
 import com.demons.calendar.model.CalendarVerticalConfig;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(context, "开始日期:" + startTime + ",结束日期:" + endTime + "、第" + weekNumber + "周", Toast.LENGTH_SHORT).show();
             }
         });
+        String month = new SimpleDateFormat("MM").format(new Date());
+        int i = Integer.parseInt(month);
+        mnCalendarVertical.scroll(i - 1);
     }
 
     @Override

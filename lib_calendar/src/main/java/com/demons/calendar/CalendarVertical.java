@@ -163,6 +163,10 @@ public class CalendarVertical extends LinearLayout {
         }
     }
 
+    public void scroll(int pos) {
+        recyclerViewCalendar.scrollToPosition(pos);
+    }
+
     /**
      * 设置配置文件
      *
@@ -172,7 +176,6 @@ public class CalendarVertical extends LinearLayout {
         this.mnCalendarVerticalConfig = config;
         initCalendarDatas();
     }
-
 
     public void setOnCalendarRangeChooseListener(OnCalendarRangeChooseListener onCalendarRangeChooseListener) {
         this.onCalendarRangeChooseListener = onCalendarRangeChooseListener;
